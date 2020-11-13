@@ -1,5 +1,6 @@
 import { readFileSync } from 'fs';
 import path from 'path';
+import * as upath from 'upath';
 import { ExtractConfig } from '../common';
 import { extractPackageFile } from './extract';
 
@@ -20,7 +21,7 @@ describe('lib/manager/nuget/extract', () => {
       const packageFile =
         'with-centralized-package-versions/Directory.Packages.props';
       const sample = readFileSync(
-        path.join(config.localDir, packageFile),
+        upath.join(config.localDir, packageFile),
         'utf8'
       );
       const res = await extractPackageFile(sample, packageFile, config);
@@ -29,7 +30,7 @@ describe('lib/manager/nuget/extract', () => {
     it('extracts all dependencies', async () => {
       const packageFile = 'sample.csproj';
       const sample = readFileSync(
-        path.join(config.localDir, packageFile),
+        upath.join(config.localDir, packageFile),
         'utf8'
       );
       const res = await extractPackageFile(sample, packageFile, config);
@@ -38,7 +39,7 @@ describe('lib/manager/nuget/extract', () => {
     it('extracts all dependencies from global packages file', async () => {
       const packageFile = 'packages.props';
       const sample = readFileSync(
-        path.join(config.localDir, packageFile),
+        upath.join(config.localDir, packageFile),
         'utf8'
       );
       const res = await extractPackageFile(sample, packageFile, config);
@@ -47,7 +48,7 @@ describe('lib/manager/nuget/extract', () => {
     it('considers NuGet.config', async () => {
       const packageFile = 'with-config-file/with-config-file.csproj';
       const contents = readFileSync(
-        path.join(config.localDir, packageFile),
+        upath.join(config.localDir, packageFile),
         'utf8'
       );
 
@@ -59,7 +60,7 @@ describe('lib/manager/nuget/extract', () => {
       const packageFile =
         'with-lower-case-config-file/with-lower-case-config-file.csproj';
       const contents = readFileSync(
-        path.join(config.localDir, packageFile),
+        upath.join(config.localDir, packageFile),
         'utf8'
       );
 
@@ -71,7 +72,7 @@ describe('lib/manager/nuget/extract', () => {
       const packageFile =
         'with-pascal-case-config-file/with-pascal-case-config-file.csproj';
       const contents = readFileSync(
-        path.join(config.localDir, packageFile),
+        upath.join(config.localDir, packageFile),
         'utf8'
       );
 
@@ -83,7 +84,7 @@ describe('lib/manager/nuget/extract', () => {
       const packageFile =
         'with-malformed-config-file/with-malformed-config-file.csproj';
       const contents = readFileSync(
-        path.join(config.localDir, packageFile),
+        upath.join(config.localDir, packageFile),
         'utf8'
       );
 
@@ -95,7 +96,7 @@ describe('lib/manager/nuget/extract', () => {
       const packageFile =
         'without-package-sources/without-package-sources.csproj';
       const contents = readFileSync(
-        path.join(config.localDir, packageFile),
+        upath.join(config.localDir, packageFile),
         'utf8'
       );
 
@@ -107,7 +108,7 @@ describe('lib/manager/nuget/extract', () => {
       const packageFile =
         'with-local-feed-in-config-file/with-local-feed-in-config-file.csproj';
       const contents = readFileSync(
-        path.join(config.localDir, packageFile),
+        upath.join(config.localDir, packageFile),
         'utf8'
       );
 
@@ -118,12 +119,12 @@ describe('lib/manager/nuget/extract', () => {
     it('extracts registry URLs independently', async () => {
       const packageFile = 'multiple-package-files/one/one.csproj';
       const contents = readFileSync(
-        path.join(config.localDir, packageFile),
+        upath.join(config.localDir, packageFile),
         'utf8'
       );
       const otherPackageFile = 'multiple-package-files/two/two.csproj';
       const otherContents = readFileSync(
-        path.join(config.localDir, packageFile),
+        upath.join(config.localDir, packageFile),
         'utf8'
       );
       expect(
