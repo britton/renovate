@@ -1,5 +1,5 @@
 import { exec as _exec } from 'child_process';
-import { join } from 'path';
+import { join } from 'upath';
 import { envMock, mockExecAll } from '../../../test/execUtil';
 import { fs, mocked } from '../../../test/util';
 import { setUtilConfig } from '../../util';
